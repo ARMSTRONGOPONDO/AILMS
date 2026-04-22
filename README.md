@@ -24,29 +24,74 @@ A robust, multimodal LMS built with Next.js 14, MongoDB, and Google Gemini AI.
 - **Icons:** Lucide React
 - **Validation:** Zod
 
-## 📦 Setup Instructions
+## 📦 Run Locally
 
-1. **Clone the repository**
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-3. **Configure Environment Variables:**
-   Create a `.env.local` file in the root directory:
-   ```env
-   MONGODB_URI=mongodb://localhost:27017/ai_lms
-   NEXTAUTH_SECRET=your_nextauth_secret
-   NEXTAUTH_URL=http://localhost:3000
-   GEMINI_API_KEY=your_google_gemini_api_key
-   ```
-4. **Seed the database (Optional):**
-   ```bash
-   npx tsx src/utils/seed.ts
-   ```
-5. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
+### 1) Prerequisites
+
+- Node.js 18+ (or 20+ recommended)
+- npm 9+
+- MongoDB running locally (default: `mongodb://localhost:27017`)
+- A valid Google Gemini API key
+
+### 2) Clone and install
+
+```bash
+git clone https://github.com/ARMSTRONGOPONDO/AILMS.git
+cd AILMS
+npm install
+```
+
+### 3) Configure environment variables
+
+Create `.env.local` in the project root:
+
+```env
+MONGODB_URI=mongodb://localhost:27017/ai_lms
+NEXTAUTH_SECRET=replace_with_a_long_random_secret
+GEMINI_API_KEY=your_google_gemini_api_key
+GEMINI_GRADING_MODEL=gemini-flash-latest
+GEMINI_TEST_MODEL=gemini-flash-latest
+```
+
+Notes:
+- In development, `NEXTAUTH_URL` is set automatically by the custom dev launcher (`scripts/dev.js`) to match the selected port.
+- For production, always set `NEXTAUTH_URL` to your deployed domain (for example `https://yourdomain.com`).
+
+### 4) Start MongoDB
+
+If MongoDB is installed as a service (Windows PowerShell as Admin):
+
+```powershell
+Start-Service MongoDB
+Get-Service MongoDB
+```
+
+You should see `Status: Running` before starting the app.
+
+### 5) (Optional) Seed sample data
+
+```bash
+npx tsx src/utils/seed.ts
+```
+
+### 6) Start the app
+
+```bash
+npm run dev
+```
+
+The app uses dynamic port selection in development (starts from `3000` and picks the next free port automatically).  
+Use the URL printed in the terminal, for example:
+
+- `http://localhost:3000`
+- `http://localhost:3001`
+- `http://localhost:3002`
+
+### 7) Login / access
+
+- Open `/login` and sign in with an existing user.
+- If you seeded data, use seeded credentials.
+- If login fails with `401` + DB connection errors, check that MongoDB is running and `MONGODB_URI` is correct.
 
 ## 🏗️ Project Structure
 
