@@ -51,13 +51,27 @@ NEXTAUTH_SECRET=replace_with_a_long_random_secret
 GEMINI_API_KEY=your_google_gemini_api_key
 GEMINI_GRADING_MODEL=gemini-flash-latest
 GEMINI_TEST_MODEL=gemini-flash-latest
+GROQ_API_KEY=your_groq_api_key
+OPENROUTER_API_KEY=your_openrouter_api_key
+MISTRAL_API_KEY=your_mistral_api_key
+SITE_URL=http://localhost:3000
 ```
 
 Notes:
 - In development, `NEXTAUTH_URL` is set automatically by the custom dev launcher (`scripts/dev.js`) to match the selected port.
 - For production, always set `NEXTAUTH_URL` to your deployed domain (for example `https://yourdomain.com`).
+- `GROQ_API_KEY`, `OPENROUTER_API_KEY`, and `MISTRAL_API_KEY` are optional fallback providers; include them if you want multi-provider AI failover.
 
 ### 4) Start MongoDB
+
+If you do not have MongoDB installed yet:
+
+- MongoDB Community Server (database): [Download](https://www.mongodb.com/try/download/community)
+- MongoDB Compass (GUI): [Download](https://www.mongodb.com/try/download/compass)
+
+Windows quick setup:
+- Install MongoDB Community Server and select the option to run MongoDB as a Windows Service.
+- Install MongoDB Compass, open it, and connect to `mongodb://localhost:27017` to verify your local server is running.
 
 If MongoDB is installed as a service (Windows PowerShell as Admin):
 
